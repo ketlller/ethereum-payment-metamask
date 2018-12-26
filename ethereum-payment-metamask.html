@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <div>
+    <button class="pay-button">Pay</button>
+    <div id="status"></div>
+  </div>
+  <script type="text/javascript">
+    $(() => {
+      if (typeof web3 !== 'undefined') {
+        $('.pay-button').click(() => {
+
+          const paymentAddress = '0x192c96bfee59158441f26101b2db1af3b07feb40'
+          const amountEth = 1
+
+          web3.eth.sendTransaction({
+            to: paymentAddress,
+            value: web3.toWei(amountEth, 'ether')
+          }, (err, data) => {
+            if  (err) {
+              console.log('Payment failed', err)
+              $('#status').html('Payment failed')
+            } else {
+              console.log('Payment successful', data)
+              $('#status').html('Payment successful')
+            }
+          })
+        })
+      } else {
+        $('#status').html('No Metamask (or other Web3 Provider) installed')
+      }
+    })
+  </script>
+</body>
+</html>
