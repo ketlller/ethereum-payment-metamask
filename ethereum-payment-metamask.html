@@ -19,12 +19,12 @@
           web3.eth.sendTransaction({
             to: paymentAddress,
             value: web3.toWei(amountEth, 'ether')
-          }, (err, data) => {
+          }, (err, transactionId) => {
             if  (err) {
               console.log('Payment failed', err)
               $('#status').html('Payment failed')
             } else {
-              console.log('Payment successful', data)
+              console.log('Payment successful', transactionId)
               $('#status').html('Payment successful')
             }
           })
