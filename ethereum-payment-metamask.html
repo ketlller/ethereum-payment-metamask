@@ -16,7 +16,7 @@
           await ethereum.enable();
           initPayButton()
         } catch (err) {
-          console.log('User denied account access', err)
+          $('#status').html('User denied account access', err)
         }
       } else if (window.web3) {
         window.web3 = new Web3(web3.currentProvider)
