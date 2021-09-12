@@ -1,9 +1,12 @@
+Code1 - к-во токенов BNB вписано в коде и нажимаем PAY отправить на указаный в коде адресс. 
+Code2 - к-во токенов BNB вписано указываем в форме и нажимаем PAY отправить на указаный в коде адресс.
+
 How to add Ethereum payments to your site with MetaMask
 
 You can add Metamask web3 legacy node package to fix this.
 Add this script on the head,
 <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
-
+<script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.js"></script>
 or install as a dependency
 npm install @metamask/legacy-web3
 
@@ -11,3 +14,5 @@ npm install @metamask/legacy-web3
 
 
 https://gist.github.com/ksaitor/6c832c106a8b9aee4f76a9145eb5d764#file-ethereum-payment-metamask-html
+
+ 
