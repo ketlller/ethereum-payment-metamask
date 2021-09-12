@@ -1,0 +1,82 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+<script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.js"></script>
+
+</head>
+<body>
+  <div>
+    <button class="pay-button">Pay </button>
+    <div id="status"></div>
+    <p> How many BNB tokens? <input type="number" id="n1" value="0"> </p>
+  </div>
+  
+  <style>
+.pay-button {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pay-button:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+ 
+
+
+</style>
+  
+  <script type="text/javascript">
+    window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          await ethereum.enable();
+          initPayButton()
+        } catch (err) {
+          $('#status').html('User denied account access', err)
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider)
+        initPayButton()
+      } else {
+        $('#status').html('No Metamask (or other Web3 Provider) installed')
+      }
+    })
+ 
+    const initPayButton = () => {
+      $('.pay-button').click(() => {
+          
+        var num1;
+num1 = document.getElementById('n1').value;
+num1 = parseFloat(num1);  
+          
+        // paymentAddress is where funds will be send to
+        const paymentAddress = '0x90DefbB6Cf30F1A7F2899822ebE804d75cB03989'
+        const amountEth = num1
+
+        web3.eth.sendTransaction({
+          to: paymentAddress,
+          value: web3.toWei(amountEth, 'ether')
+        }, (err, transactionId) => {
+          if  (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+      })
+    }
+  </script>
+</body>
